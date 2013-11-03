@@ -19,7 +19,18 @@ flight(cityE, cityA, 4, 5).
 %    connect(A,B),
 %    connect(B, cityE).
 
-fly(A,B, Start, End) :-
-    connect(A,X),
-    A =\= B,
-    fly(X,B, Start, End).
+%fly(A,B, Result) :-
+%    r = connect(A,X),
+%    (r = true ->
+%        Result = true
+%    ;
+%        fly(X,B,Result)).
+
+fly(From, To) :- fly(From,To,[]).
+fly(From,To,_) :- connect(From,To).
+
+fly(From, To, Visited) :-
+    connect(From, Through),
+    \+ memberchk(Through,Visited),
+    fly(Through,To, [Through|Visited]),
+    From \= To.
