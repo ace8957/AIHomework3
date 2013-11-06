@@ -10,7 +10,7 @@ flight(cityE, cityA, 4, 5).
 timeCheck(Start,Duration,End,Time) :-
 	Start + Duration =< End.
 
-fly(From, To, Start, End) :- fly(From,To,Start,End,[],[], Time).
+fly(From, To, Start, End) :- fly(From,To,Start,End,[], Time).
 fly(From,To,_,End,_,Time) :-
 	flight(From,To,FlightStart,FlightDuration),
 	timeCheck(FlightStart,FlightDuration, End, Time).
