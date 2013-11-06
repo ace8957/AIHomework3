@@ -14,8 +14,10 @@ flight(cityD, cityE, 3, 4).
 flight(cityE, cityA, 4, 5).
 
 timeCheck(Start,End,Time) :-
-	Time = End - Start,
-	Time =< End.
+	Duration is End - Start,
+	TempTime is Time + Duration,
+	TempTime =< End,
+	Time is TempTime.
 
 fly(From, To, Start, End) :- fly(From,To,Start,End,[], Time).
 fly(From,To,_,_,_,_) :- flight(From,To,_,_).
