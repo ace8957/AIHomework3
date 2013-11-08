@@ -57,7 +57,9 @@ flight(cityE, cityD, 3, 4).
 %The arrival time of the last leg of the flight is stored in the list LastEnd.
 %Note that the builtin function nth0() is used to get the 0th element from LastEnd.
 %This function will check for the arrival time (Start+Duration) being less than
-%	or equal to the final arrival deadline.
+%	or equal to the final arrival deadline, as well as for the time span to fall within
+%	a single day. A single day is defined as starting at midnight and ending the following
+%	midnight.
 %The function will also check to ensure that you are not trying to get on a
 %	flight which departs before the previous leg of your flight arrives.
 %Note that for the purposes of this assignment, this function does not include
@@ -68,6 +70,7 @@ flight(cityE, cityD, 3, 4).
 timeCheck(Start,Duration,End,LastEnd) :-
 	nth0(0,LastEnd,LE),
 	LE + Duration =< End,
+	\+ End >= 24,
 	Start >= LE.
 
 %define the original form of the call to fly()
