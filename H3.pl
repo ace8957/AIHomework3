@@ -73,7 +73,7 @@ timeCheck(Start,Duration,End,LastEnd) :-
 	nth0(0,LastEnd,LE),
 	LE + Duration =< End,
 	LE + Duration =< 24,
-	\+ End => 24,
+	\+ End >= 24,
 	Start >= LE.
 
 %define the original form of the call to fly()
