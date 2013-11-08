@@ -72,8 +72,8 @@ flight(cityE, cityD, 3, 4).
 timeCheck(Start,Duration,End,LastEnd) :-
 	nth0(0,LastEnd,LE),
 	LE + Duration =< End,
-	LE + Duration =< 23,
-	\+ End >= 23,
+	LE + Duration =< 24,
+	\+ End => 24,
 	Start >= LE.
 
 %define the original form of the call to fly()
